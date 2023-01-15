@@ -1,0 +1,94 @@
+<header class="nav">
+  <div class="nav__mobile_menu" [ngClass]="menuShowing ? 'active' : ''">
+    <ul class="primary">
+      <li>
+        <a class="no_click" href="/movie" (click)="expandMobileMenu($event)">Movies</a>
+        <ul class="sub_menu movie" [ngClass]="menuExpandedMovies ? '' : 'hide'">
+          <li><a href="/movie">Popular</a></li>
+          <li><a href="/movie/top-rated">Top Rated</a></li>
+          <li><a href="/movie/upcoming">Upcoming</a></li>
+          <li><a href="/movie/now-playing">Now Playing</a></li>
+        </ul>
+      </li>
+      <li>
+        <a class="no_click" href="/tv" (click)="expandMobileMenu($event)">TV Shows</a>
+        <ul class="sub_menu tv" [ngClass]="menuExpandedShows ? '' : 'hide'">
+          <li><a href="/tv">Popular</a></li>
+          <li><a href="/tv/top-rated">Top Rated</a></li>
+          <li><a href="/tv/on-the-air">On TV</a></li>
+          <li><a href="/tv/airing-today">Airing Today</a></li>
+        </ul>
+      </li>
+      <li>
+        <a class="no_click" href="/person" (click)="expandMobileMenu($event)">People</a>
+        <ul class="sub_menu person" [ngClass]="menuExpandedPeople ? '' : 'hide'">
+          <li><a href="/person">Popular People</a></li>
+        </ul>
+      </li>
+    </ul>
+
+    <ul class="small">
+      <li><a href="/bible">Contribution Bible</a></li>
+      <li><a href="/apps">Apps</a></li>
+      <li><a href="/discuss">Discussions</a></li>
+      <li><a href="/leaderboard">Leaderboard</a></li>
+      <li><a href="/documentation/api">API</a></li>
+      <li><a href="/talk">Support</a></li>
+      <li><a href="/about">About</a></li>
+    </ul>
+
+    <ul class="small">
+        <li><a href="/logout">Logout</a></li>
+    </ul>
+  </div>
+  <div class="nav__content">
+    <ul class="nav__navigation">
+      <li class="nav__hamburger">
+        <span *ngIf="!this.menuShowing" class="material-icons mobile-menu" (click)="this.menuShowing = !this.menuShowing">
+          menu
+        </span>  
+        <span *ngIf="this.menuShowing" class="material-icons mobile-menu" (click)="this.menuShowing = !this.menuShowing">
+          menu_open
+        </span>
+      </li>
+      <li  class="nav__logo">
+        <a href="#"><img src="assets\logo-primary-long.svg" alt="The movie database logo" width="55" height="40"></a> 
+      </li>
+      <div class="nav__wrapper">
+        <li class="nav__notifications">
+          <span class="material-symbols-outlined">
+            notifications
+          </span>
+        </li>
+        <li class="nav__user">
+          <span class="material-symbols-outlined">
+            account_circle
+            </span>
+        </li>
+        <li class="nav__search">
+          <span *ngIf="!searchShowing" class="material-symbols-outlined open" (click)="showSearch()">
+            search
+          </span>
+          <span *ngIf="searchShowing" class="material-symbols-outlined close" (click)="showSearch()">
+            close
+            </span>
+        </li>
+      </div>
+    </ul>
+  </div>
+  <div class="search" *ngIf="searchShowing">
+    <section class="search__bar">
+      <div class="search__content">
+        <form action="/search" class="search__form">
+          <label>
+            <span class="material-symbols-outlined search__icon">
+              search
+            </span>
+            <input type="text" placeholder="Search">
+          </label>
+          <input type="submit" class="hide">
+        </form>
+      </div>
+    </section>
+  </div>
+</header>

@@ -1,0 +1,158 @@
+@import '/src/app/variables.scss';
+
+.nav {
+  background-color: $color-primary;
+  color: $color-white;
+  height: 64px;
+
+  &__content {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    gap: 1rem;
+    padding: 0 1.25rem;
+  }
+  
+  &__navigation {
+    max-width: 100%;
+    gap: .2rem;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+  }
+
+  &__wrapper{
+    gap: .75rem;
+    width: 33%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+  &__search .open {
+    color: $color-secondary;
+    font-weight: 700;
+  }
+
+  &__search .close {
+    color: $color-white;
+    font-weight: 700;
+  }
+
+  &__mobile_menu {
+    display: inline-block;
+    position: fixed;
+    top: 64px;
+    left: -90%;
+    width: 90%;
+    height: 100%;
+    background: rgba($color-primary, 0.9);
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
+    z-index: 9999;
+    transition: ease .3s;
+    padding: 20px;
+    box-sizing: border-box;
+  
+    &.active {
+        left: 0;
+    }
+  
+    li {
+      padding-bottom: .6rem;
+    }
+  
+    a {
+      text-decoration: none;
+      color: $color-white;
+      font-weight: 600;
+      font-size: 1.3rem;
+    }
+  
+    .small{
+      margin-top: 1.1rem;
+  
+      a {
+        font-size: 1rem;
+        color: rgba($color-white, 0.6);
+      }
+    }
+  
+    .sub_menu  {
+      margin-top: .75rem;
+  
+      li a {
+        color: #fff;
+        font-weight: 400;
+        font-size: 1em;
+      }
+    }
+  }
+}
+
+.search {
+  width: 100%;
+  position: absolute;
+  top: 64px;
+  left: 0;
+  border-top: 1px solid rgba($color-lgrey, 1);
+  border-bottom: 1px solid rgba($color-lgrey, 1);
+
+  &__bar {
+    width: 100%;
+    background-color: $color-white;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__content {
+    max-width: 100%;
+    padding: 0 1.2rem;
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+  }
+
+  &__form {
+    display: block;
+    width: 100%;
+    padding: 0;
+
+    label {
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+    }
+
+    input:placeholder {
+      color: $color-grey;
+    }
+
+    input {
+      font-size: 1.1rem;
+      border: none;
+      font-style: italic;
+      color: $color-grey;
+    }
+
+    input:active,
+    input:focus {
+      outline: none;
+    }
+  }
+
+  &__icon {
+    color: $color-text;
+    font-weight: 700;
+  }
+}
+
+.hide {
+  display: none;
+}
