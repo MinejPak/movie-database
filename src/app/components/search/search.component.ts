@@ -33,8 +33,8 @@ export class SearchComponent implements OnInit, OnDestroy {
   }
 
   fetchPopularMovies(page: number) {
+    this.isFetching = true;
     this.movieService.fetchMovies(page).subscribe((response: popularMovies) => {
-      this.isFetching = true;
       this.searchResultsArray = response.results;
       this.isFetching = false;
     })

@@ -1,0 +1,50 @@
+@import '/src/app/variables.scss';
+
+.container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 0 1rem;
+  margin-bottom: 5rem;
+
+  &__content {
+    h1 {
+      font-size: 4rem;
+      letter-spacing: 3px;
+      color: $color-primary;
+      line-height: 1.1;
+      text-align: center;
+    }
+
+    p {
+      color: $color-grey;
+      text-align: center;
+      margin: 1rem 0;
+      font-size: 1rem;
+    }
+  }
+
+  &__button {
+
+    .button {
+      border: 0;
+      background-color: $color-primary;
+      color: white;
+      padding: .5rem 1.2rem;
+      line-height: 1.8;
+      border-radius: .3rem;
+      font-size: 1.4rem;
+      transition: all .3s ease;
+      cursor: pointer;
+    }
+
+    .button:active,
+    .button:hover {
+      color: $color-text;
+      background-color: $color-secondary;
+      transform: translateY(10deg);
+    }
+  }
+}

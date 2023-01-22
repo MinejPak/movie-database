@@ -1,3 +1,5 @@
+import { popularMovies } from './../../models/popularMovies.model';
+import { MovieService } from './../../services/movie.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Component, HostListener, OnInit } from '@angular/core';
 
@@ -7,7 +9,10 @@ import { Component, HostListener, OnInit } from '@angular/core';
   styleUrls: ['./navigation.component.scss']
 })
 export class NavigationComponent implements OnInit {
+  hasFetchedData: boolean = false;
   public getScreenWidth: any;
+  isFetching: boolean = false;
+  trendingMoviesArray: any;
   isDesktop: boolean = true;
   menuShowing: boolean = false;
   menuExpandedMovies: boolean = false;
@@ -21,7 +26,7 @@ export class NavigationComponent implements OnInit {
   searchShowing: boolean = false;
   query: string = "";
 
-  constructor(private router: Router, private _Activatedroute:ActivatedRoute) {}
+  constructor(private router: Router, private _Activatedroute:ActivatedRoute, private movieService: MovieService) {}
 
   ngOnInit(): void {
     this.getScreenWidth = window.innerWidth;
@@ -32,6 +37,34 @@ export class NavigationComponent implements OnInit {
   onWindowResize() {
     this.getScreenWidth = window.innerWidth;
     this.checkViewport();
+  }
+
+  fetchTrendingMovies(type: string, time: string) {
+    this.isFetching = true;
+    this.movieService.fetchTrending(type, time).subscribe((response: popularMovies) => {
+      this.trendingMoviesArray = response.results;
+      this.isFetching = false;
+      this.hasFetchedData = true;
+    })
+  }
+
+  fetchSearchResults() {
+    this.movieService.searchMovies(this.query).subscribe((response: popularMovies)=> {
+      this.trendingMoviesArray = response.results
+      this.isFetching = false;
+    })
+  }
+
+  fetchResults() {
+    if(this.query) {
+      this.isFetching = true;
+      const timeOut = setTimeout(() => this.fetchSearchResults(), 1500);
+      return () => clearTimeout(timeOut);
+    }
+    else {
+        this.isFetching = false;
+    }
+    return false;
   }
 
   checkViewport() {
@@ -62,17 +95,18 @@ export class NavigationComponent implements OnInit {
   }
 
   showSearch() {
-      this.menuShowing = false;
-      this.searchShowing = !this.searchShowing;
+    if(!this.hasFetchedData) {
+      this.fetchTrendingMovies("all", "day");
+    }
+    this.menuShowing = false;
+    this.searchShowing = !this.searchShowing;
   }
 
-  onKeydown(event) {
-    this.query = event.target.value;
-    if(!this.query) {
-      return false;
+  onKeydown() {
+    if(this.query) {
+      this.router.navigate(['/search', this.query]);
+      this.searchShowing = false;
+      this.query = "";
     }
-    this.router.navigate(['/search', this.query]);
-    this.searchShowing = false;
-    return true;
   }
 }

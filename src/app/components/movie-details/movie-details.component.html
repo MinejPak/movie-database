@@ -1,7 +1,6 @@
-<app-navigation></app-navigation>
 <div class="container">
-  <button class="back-button" (click)="back()">Go back</button>
   <div class="details">
+    <button class="back-button" (click)="back()">Go back</button>
     <h1>{{movieDetailsArray.title}}</h1>
     <img src="https://image.tmdb.org/t/p/w500/{{movieDetailsArray.backdrop_path}}" alt="{{movieDetailsArray.title}}">
     <p>{{movieDetailsArray.overview}}</p>
@@ -10,4 +9,3 @@
       </span></p>
   </div>
 </div>
-<app-footer></app-footer>

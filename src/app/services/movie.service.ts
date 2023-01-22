@@ -18,6 +18,10 @@ export class MovieService {
     return this.http.get<movieDetails>(`https://api.themoviedb.org/3/movie/${movieId}?api_key=${this.apiKey}&language=en-US`);
   }
 
+  fetchTrending(type: string, time: string): Observable<popularMovies> {
+    return this.http.get<popularMovies>(`https://api.themoviedb.org/3/trending/${type}/${time}?api_key=${this.apiKey}`);
+  }
+
   searchMovies(query?: string): Observable<popularMovies> {
     return this.http.get<popularMovies>(`https://api.themoviedb.org/3/search/movie?api_key=${this.apiKey}&language=en-US&page=1&include_adult=false&query=${query}`);
   }

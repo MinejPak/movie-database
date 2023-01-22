@@ -136,10 +136,30 @@
             <span class="material-symbols-outlined search__icon">
               search
             </span>
-            <input type="text" placeholder="Search" (keydown.enter)="onKeydown($event)">
+            <input type="text" placeholder="Search" [(ngModel)]="query" (keydown.enter)="onKeydown()" name="query" (ngModelChange)="fetchResults()">
+  
           </label>
           <input type="submit" class="hide">
         </form>
+      </div>
+      <div class="search__details">
+        <h3 *ngIf="isFetching">Sit tight we are fetching results..</h3>
+        <ul class="search__list" *ngIf="!isFetching">
+          <li class="search__item">
+            <span class="material-symbols-outlined search__icon">
+              search
+            </span>
+            <p><strong>Trending now</strong></p>
+          </li>
+          <li class="search__item" *ngFor="let trending of trendingMoviesArray">
+            <a routerLink="search/{{trending.title ? trending.title : trending.name}}" (click)="searchShowing = false">
+              <span class="material-symbols-outlined search__icon_small">
+              search
+            </span>
+            {{trending.title ? trending.title : trending.name}}
+          </a>
+          </li>
+        </ul>
       </div>
     </section>
   </div>

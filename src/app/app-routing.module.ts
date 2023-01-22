@@ -6,10 +6,12 @@ import { RouterModule, Routes } from '@angular/router';
 import { MovieDetailsComponent } from './components/movie-details/movie-details.component';
 
 const routes: Routes = [
-  { path: '',   redirectTo: '/home', pathMatch: 'full' },
+  { path: '',   redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
-  { path: 'movie/:movieId', component: MovieDetailsComponent },
-  { path: 'search/:query', component: SearchComponent }
+  { path: 'movie/:movieId', component: MovieDetailsComponent},
+  { path: 'search/:query', component: SearchComponent },
+  { path: 'not-found', component: NotFoundComponent },
+  { path: '**', redirectTo: 'not-found' },
 ];
 
 @NgModule({
