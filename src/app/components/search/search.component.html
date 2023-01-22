@@ -1,0 +1,20 @@
+<app-navigation></app-navigation>
+<main>
+  <div *ngIf="isFetching">Fetching..</div>
+  <h2 class="results-heading" *ngIf="!isFetching">Showing search results for: {{query}}</h2>
+  <div *ngIf="!isFetching" class="grid">
+    <article *ngFor="let movie of searchResultsArray">
+      <img src="https://image.tmdb.org/t/p/w500/{{movie.backdrop_path}}" alt="{{movie.title}}">
+      <div class="text">
+        <h3>{{movie.title}}</h3>
+        <p>{{movie.release_date | date: 'longDate'}}</p>
+        <button (click)="showDetails(movie.id)">More info</button>
+      </div>
+    </article>
+  </div>
+  <h3 class="page-indicator">Page {{currentPage}} of {{totalPages}}</h3>
+  <div class="button-container">
+    <button (click)="nextPage()">Next page</button>
+  </div>
+</main>
+<app-footer></app-footer>

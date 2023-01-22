@@ -1,4 +1,4 @@
-<header class="nav">
+<header class="nav" [ngClass]="isDesktop ? 'landscape' : 'portrait'">
   <div class="nav__mobile_menu" [ngClass]="menuShowing ? 'active' : ''">
     <ul class="primary">
       <li>
@@ -44,7 +44,7 @@
   <div class="nav__content">
     <ul class="nav__navigation">
       <li class="nav__hamburger">
-        <span *ngIf="!this.menuShowing" class="material-icons mobile-menu" (click)="this.menuShowing = !this.menuShowing">
+        <span *ngIf="!this.menuShowing" class="material-icons mobile-menu" (click)="this.menuShowing = !this.menuShowing; this.searchShowing = false">
           menu
         </span>  
         <span *ngIf="this.menuShowing" class="material-icons mobile-menu" (click)="this.menuShowing = !this.menuShowing">
@@ -52,18 +52,70 @@
         </span>
       </li>
       <li  class="nav__logo">
-        <a href="#"><img src="assets\logo-primary-long.svg" alt="The movie database logo" width="55" height="40"></a> 
+        <a href="#" *ngIf="!isDesktop"><img src="assets\logo-primary-long.svg" alt="The movie database logo" width="55" height="40"></a> 
+        <a href="#" *ngIf="isDesktop"><img src="assets\logo-navigation.svg" alt="The movie database logo" width="154" height="20"></a> 
+      </li>
+      <li class="nav__landscape_links">
+        <div class="nav__movies" (mouseover)="menuMoviesHover=true" (mouseout)="menuMoviesHover=false">
+          <a class="nav__link" href="/tv">Movies</a>
+          <ul class="nav__movies_expanded" [ngClass]="menuMoviesHover ? '' : 'hide'">
+            <li><a href="#">Popular</a></li>
+            <li><a href="#">Now Playing</a></li>
+            <li><a href="#">Upcoming</a></li>
+            <li><a href="#">Top Rated</a></li>
+          </ul>
+        </div>
+        <div class="nav__shows" (mouseover)="menuShowsHover=true" (mouseout)="menuShowsHover=false">
+          <a class="nav__link" href="#">TV Shows</a>
+          <ul class="nav__shows_expanded" [ngClass]="menuShowsHover ? '' : 'hide'">
+            <li><a href="#">Popular</a></li>
+            <li><a href="#">Airing Today</a></li>
+            <li><a href="#">On Tv</a></li>
+            <li><a href="#">Top Rated</a></li>
+          </ul>
+        </div>
+        <div class="nav__people" (mouseover)="menuPeopleHover=true" (mouseout)="menuPeopleHover=false">
+          <a class="nav__link" href="#">People</a>
+          <ul class="nav__people_expanded" [ngClass]="menuPeopleHover ? '' : 'hide'">
+            <li><a href="#">Popular People</a></li>
+          </ul>
+        </div>
+        <div class="nav__more" (mouseover)="menuMoreHover=true" (mouseout)="menuMoreHover=false">
+          <a class="nav__link" href="#">More</a>
+          <ul class="nav__more_expanded" [ngClass]="menuMoreHover ? '' : 'hide'">
+            <li><a href="#">Discussion</a></li>
+            <li><a href="#">Leaderboard</a></li>
+            <li><a href="#">Support</a></li>
+            <li><a href="#">Api</a></li>
+          </ul>
+        </div>
       </li>
       <div class="nav__wrapper">
+        <li class="nav__plus" *ngIf="isDesktop">
+          <span class="material-symbols-outlined plus">
+            add
+          </span>
+        </li>
+        <li class="nav__language" *ngIf="isDesktop">
+          <span class="material-symbols-outlined">
+            language
+            </span>
+        </li>
         <li class="nav__notifications">
           <span class="material-symbols-outlined">
             notifications
           </span>
         </li>
-        <li class="nav__user">
+        <li class="nav__user" (mouseover)="showAccountTooltip=true" (mouseout)="showAccountTooltip=false">
           <span class="material-symbols-outlined">
             account_circle
+          </span>
+          <div class="account_tooltip" [ngClass]="showAccountTooltip ? '' : 'hide'">
+            <span class="material-symbols-outlined tooltip_arrow">
+              arrow_drop_up
             </span>
+            <p>Profile and Settings</p>
+          </div>
         </li>
         <li class="nav__search">
           <span *ngIf="!searchShowing" class="material-symbols-outlined open" (click)="showSearch()">
@@ -84,7 +136,7 @@
             <span class="material-symbols-outlined search__icon">
               search
             </span>
-            <input type="text" placeholder="Search">
+            <input type="text" placeholder="Search" (keydown.enter)="onKeydown($event)">
           </label>
           <input type="submit" class="hide">
         </form>

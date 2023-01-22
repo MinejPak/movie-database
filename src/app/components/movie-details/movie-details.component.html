@@ -1,0 +1,13 @@
+<app-navigation></app-navigation>
+<div class="container">
+  <button class="back-button" (click)="back()">Go back</button>
+  <div class="details">
+    <h1>{{movieDetailsArray.title}}</h1>
+    <img src="https://image.tmdb.org/t/p/w500/{{movieDetailsArray.backdrop_path}}" alt="{{movieDetailsArray.title}}">
+    <p>{{movieDetailsArray.overview}}</p>
+    <p>{{movieDetailsArray.vote_average}} <span class="material-symbols-outlined gold-star">
+      star
+      </span></p>
+  </div>
+</div>
+<app-footer></app-footer>

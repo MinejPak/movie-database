@@ -1,0 +1,138 @@
+@import '/src/app/variables.scss';
+
+.portrait {
+  .rounded {
+    padding: .5rem;
+    position: static;
+  }
+
+  .button_container {
+    padding: 3rem 0;
+  }
+
+  .wrapper {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    justify-items: center;
+    width: 100%;
+    padding-top: 0;
+  }
+
+  .column {
+    margin: 0;
+    margin-bottom: 1rem;
+  }
+}
+
+footer {
+  max-width: 100%;
+  width: 100vw;
+  box-sizing: border-box;
+  padding: 0;
+  background-image: radial-gradient(at 30% top, #031d33 0%, rgba($color-primary, 1) 70%);
+  background-position: center top;
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  align-content: space-between;
+  justify-content: center;
+
+  img {
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+
+  nav {
+    font-size: .9em;
+    display: flex;
+    justify-content: space-between;
+    padding-top: 80px;
+    padding-bottom: 40px;
+    color: $color-white;
+
+    div {
+      margin-right: 40px;
+      min-width: 0;
+    }
+
+    h3 {
+      font-weight: bold;
+      font-size: 1.4em;
+      line-height: 1.4em;
+      text-transform: uppercase;
+      color: #fff;
+      white-space: nowrap;
+    }
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+
+      li {
+        line-height: 1.6em;
+        max-width: 260px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        color: #fff;
+
+        a {
+          font-size: 1.2em;
+          color: #fff;
+          text-decoration: none;
+          font-weight: normal;
+          transition: color .3s ease;
+        }
+        a:hover {
+          color: $color-secondary;
+        }
+      }
+    }
+  }
+
+  section {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    color: #fff;
+    opacity: 0.1;
+    font-size: 0.7em;
+  }
+
+  .join {
+    position: relative;
+    top: -36px;
+    right: 0;
+  }
+
+  .rounded {
+    border: 2px solid #fff;
+    border-radius: 5px;
+    padding: 8px 16px;
+    transition: linear .1s;
+
+    position: relative;
+    top: 140px;
+    border-color: #fff;
+    background-color: #fff;
+    color: rgba($color-secondary, 1);
+    font-size: 1.3em;
+    text-decoration: none;
+    font-weight: bold;
+    display: inline-block;
+    word-wrap: break-word;
+    white-space: normal;
+    transition: all .3s ease;
+  }
+
+  .rounded:active,
+  .rounded:hover {
+    border: 2px solid $color-secondary;
+    background-color: $color-secondary;
+    color: $color-text;
+  }
+}
